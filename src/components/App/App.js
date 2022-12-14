@@ -1,6 +1,6 @@
 import React from 'react';
 import { Component } from 'react';
-import { Container } from './App.styled';
+import { Container, ListCounter, TextCounter } from './App.styled';
 import TodoList from '../TodoList/TodoList';
 import initialTodos from '../../todos';
 
@@ -26,10 +26,10 @@ class App extends Component {
 
     return (
       <Container>
-        <div>
-          <p>Total: {totalTodo}</p>
-          <p>Done: {completedTodos}</p>
-        </div>
+        <ListCounter>
+          <TextCounter>Total: {totalTodo}</TextCounter>
+          <TextCounter>Done: {completedTodos}</TextCounter>
+        </ListCounter>
         {todos.length > 0 && (
           <TodoList todos={todos} onDeleteTodo={this.deleteTodo} />
         )}
