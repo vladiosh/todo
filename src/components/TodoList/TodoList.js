@@ -1,17 +1,31 @@
 import React from 'react';
-import { Btn, TodoItem, Text, List } from './TodoList.styled';
+import { List } from './TodoList.styled';
+import PropTypes from 'prop-types';
+import TodoItem from '../TodoItem/TodoItem';
 
 const TodoList = ({ todos, onDeleteTodo }) => {
   return (
     <List>
       {todos.map(({ description, id }) => (
-        <TodoItem key={id}>
-          <Text>{description}</Text>
-          <Btn onClick={() => onDeleteTodo(id)}>Delete</Btn>
-        </TodoItem>
+        <TodoItem
+          key={id}
+          id={id}
+          description={description}
+          onDeleteTodo={onDeleteTodo}
+        />
       ))}
     </List>
   );
 };
 
 export default TodoList;
+
+TodoList.propTypes = {
+  todos: PropTypes.arrayOf(
+    PropTypes.shape({
+      description: PropTypes.string,
+      id: PropTypes.string.isRequired,
+    })
+  ),
+  onDeleteTodo: PropTypes.func.isRequired,
+};
